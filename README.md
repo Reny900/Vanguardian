@@ -1,6 +1,8 @@
 ##### :heavy_exclamation_mark: Status :heavy_exclamation_mark:
 Should work on all regions as long as the opcodes are mapped but I personally only test modules on NA with Caali's tera-proxy: https://discord.gg/maqBmJV  
 
+Forks from:https://github.com/TeraProxy/Vanguardian
+
 ##### :heavy_exclamation_mark: Installation for Caali's tera-proxy :heavy_exclamation_mark:
 1) Download Vanguardian: https://github.com/TeraProxy/Vanguardian/archive/master.zip
 2) Extract the contents of the zip file into "\tera-proxy\bin\node_modules\"
