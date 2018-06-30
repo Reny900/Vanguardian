@@ -1,16 +1,17 @@
-// Version 1.2.6
+// Version 1.2.5
 
 'use strict'
 
 const Command = require('command'),
 	GameState = require('tera-game-state')
 
-module.exports = function vanguardian(dispatch) {
+module.exports = function Vanguardian(dispatch) {
 	const command = Command(dispatch),
 		game = GameState(dispatch)
 
 	let battleground = null,
 		inbattleground = false,
+		questid = 0,
 		timeout = null,
 		timeoutdaily = null,
 		timeoutweekly = null,
@@ -23,16 +24,21 @@ module.exports = function vanguardian(dispatch) {
 	// ############# //
 
 	game.on('enter_game', () => {
-		daily = weekly = 0
-		timeout = timeoutdaily = timeoutweekly = null
+		questid = 0
+		daily = 0
+		weekly = 0
+		timeout = null
+		timeoutdaily = null
+		timeoutweekly = null
 	})
 
 	dispatch.hook('S_COMPLETE_EVENT_MATCHING_QUEST', 1, event => {
-		timeout = setTimeout( () => { CompleteQuest(event.id) }, 2000) // try to complete the quest after 2 seconds
+		questid = event.id
+		if(questid != 0) timeout = setTimeout(CompleteQuest, 2000) // try to complete the quest after 2 seconds
 		return false
 	})
 
-	dispatch.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 1, event => {
+	dispatch.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 2, event => {
 		daily = event.unk4
 		weekly = event.unk6
 	})
@@ -51,29 +57,38 @@ module.exports = function vanguardian(dispatch) {
 	// ### Functions ### //
 	// ################# //
 
-	function CompleteQuest(id) {
+	function CompleteQuest() {
 		clearTimeout(timeout)
 		if(!enabled) return
-		if(game.me.alive && !inbattleground) {
-			dispatch.toServer('C_COMPLETE_DAILY_EVENT', 1, { id })
+		if(game.me.alive && !inbattleground) { // if alive and not in a battleground
+			dispatch.toServer('C_COMPLETE_DAILY_EVENT', 1, { id: questid })
+			questid = 0
 			if(daily < 16) {
 				daily++
 				weekly++
-				command.message('[Vanguardian] You have completed ' + daily + ' Vanguard Requests today.')
+				command.message('<font color="#ffff00">[H每日任务:]你今日已经完成：</font>' + `<font color="#00ffff">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#ffff00">每日任务</font>')
 			}
-			else command.message('[Vanguardian] You have completed all ' + daily + ' Vanguard Requests today.')
-			if(daily == 3 || daily == 8) timeoutdaily = setTimeout( () => { CompleteExtra(1) }, 1000)
-			if(weekly == 16) timeoutweekly = setTimeout( () => { CompleteExtra(0) }, 1500)
+			else command.message('<font color="#ffff00">[H每日任务:]你今日已经完成全部：</font>' + `<font color="#00ffff">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#ffff00">每日任务</font>')
+			if(daily == 3 || daily == 8) timeoutdaily = setTimeout(CompleteDaily, 1000)
+			if(weekly == 16) timeoutweekly = setTimeout(CompleteWeekly, 1500)
 		}
-		else timeout = setTimeout( () => { CompleteQuest(id) }, 5000) // if dead or in battleground, retry to complete quest after 5 seconds
+		else timeout = setTimeout(CompleteQuest, 5000) // if dead or busy, retry to complete quest after 5 seconds
 	}
 
-	function CompleteExtra(type) {
-		clearTimeout(type == 1 ? timeoutdaily : timeoutweekly)
+	function CompleteDaily() {
+		clearTimeout(timeoutdaily)
 		if(!enabled) return
-		if(game.me.alive && !inbattleground)
-			dispatch.toServer('C_COMPLETE_EXTRA_EVENT', 1, { type }) // 0 = weekly, 1 = daily
-		else timeoutextra = setTimeout( () => { CompleteExtra(type) }, 5000) // if dead or in battleground, retry to complete quest after 5 seconds
+		if(game.me.alive && !inbattleground) // if alive and not in a battleground
+			dispatch.toServer('C_COMPLETE_EXTRA_EVENT', 1, { type: 1 })
+		else timeoutdaily = setTimeout(CompleteDaily, 5000) // if dead or busy, retry to complete quest after 5 seconds
+	}
+
+	function CompleteWeekly() {
+		clearTimeout(timeoutweekly)
+		if(!enabled) return
+		if(game.me.alive && !inbattleground) // if alive and not in a battleground
+			dispatch.toServer('C_COMPLETE_EXTRA_EVENT', 1, { type: 0 })
+		else timeoutweekly = setTimeout(CompleteWeekly, 5000) // if dead or busy, retry to complete quest after 5 seconds
 	}
 
 	// ################ //
@@ -83,11 +98,11 @@ module.exports = function vanguardian(dispatch) {
 	command.add('vg', (param) => {
 		if(param == null) {
 			enabled = !enabled
-			command.message('[Vanguardian] ' + (enabled ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'))
-			console.log('[Vanguardian] ' + (enabled ? 'enabled' : 'disabled'))
+			command.message('[H每日任务:] ' + (enabled ? '<font color="#56B4E9">开启</font>' : '<font color="#E69F00">关闭</font>'))
+			console.log('[H每日任务:] ' + (enabled ? 'enabled' : 'disabled'))
 		}
 		else if(param == "daily")
-			command.message('[Vanguardian] You have completed ' + daily + ' Vanguard Requests today.')
+			command.message('<font color="#ffff00">[H每日任务:]你今日已经完成：</font>' + `<font color="#00ffff">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#ffff00">每日任务</font>')
 		else command.message('Commands:<br>'
 							+ ' "vg" (enable/disable Vanguardian),<br>'
 							+ ' "vg daily" (Tells you how many Vanguard Requests you completed today")'
