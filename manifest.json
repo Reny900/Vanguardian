@@ -1,0 +1,14 @@
+{
+	"files": {
+		"README.md": "bbbbea85ab14ffd7b9c663267131c6f97d61b676196d52d161d2c4d06bf30eab",
+		"index.js": "7f30bdac385a6fc5ea0fd9db67e7d8cd90972c690fe0b09f82d31c4ffa20e069",
+		"module.json": "e66d18c5710731b16f5ce83315c4a9dd0b1cfdce9fb1ea3a659a5405777e5416"
+	},
+	"defs": {
+		"C_COMPLETE_DAILY_EVENT": 1,
+		"C_COMPLETE_EXTRA_EVENT": 1,
+		"S_AVAILABLE_EVENT_MATCHING_LIST": 2,
+		"S_BATTLE_FIELD_ENTRANCE_INFO": 1,
+		"S_COMPLETE_EVENT_MATCHING_QUEST": 1
+	}
+}
