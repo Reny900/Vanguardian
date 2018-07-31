@@ -66,9 +66,9 @@ module.exports = function Vanguardian(dispatch) {
 			if(daily < 16) {
 				daily++
 				weekly++
-				command.message('<font color="#ffff00">[H每日任务:]你今日已经完成：</font>' + `<font color="#00ffff">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#ffff00">每日任务</font>')
+				command.message('<font color="#E69F00">[H每日任务:]你今日已经完成：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">每日任务</font>')
 			}
-			else command.message('<font color="#ffff00">[H每日任务:]你今日已经完成全部：</font>' + `<font color="#00ffff">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#ffff00">每日任务</font>')
+			else command.message('<font color="#E69F00">[H每日任务:]你今日已经完成全部：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">每日任务</font>')
 			if(daily == 3 || daily == 8) timeoutdaily = setTimeout(CompleteDaily, 1000)
 			if(weekly == 16) timeoutweekly = setTimeout(CompleteWeekly, 1500)
 		}
@@ -98,11 +98,11 @@ module.exports = function Vanguardian(dispatch) {
 	command.add('vg', (param) => {
 		if(param == null) {
 			enabled = !enabled
-			command.message('[H每日任务:] ' + (enabled ? '<font color="#56B4E9">开启</font>' : '<font color="#E69F00">关闭</font>'))
+			command.message('<font color="#E69F00">[H每日任务:] </font>' + (enabled ? '<font color="#56B4E9">开启</font>' : '<font color="#E69F00">关闭</font>'))
 			console.log('[H每日任务:] ' + (enabled ? 'enabled' : 'disabled'))
 		}
 		else if(param == "daily")
-			command.message('<font color="#ffff00">[H每日任务:]你今日已经完成：</font>' + `<font color="#00ffff">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#ffff00">每日任务</font>')
+			command.message('<font color="#E69F00">[H每日任务:]你今日已经完成：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#E69F00">每日任务</font>')
 		else command.message('Commands:<br>'
 							+ ' "vg" (enable/disable Vanguardian),<br>'
 							+ ' "vg daily" (Tells you how many Vanguard Requests you completed today")'
