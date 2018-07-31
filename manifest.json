@@ -1,7 +1,8 @@
 {
 	"files": {
+		"LICENSE": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
 		"README.md": "bbbbea85ab14ffd7b9c663267131c6f97d61b676196d52d161d2c4d06bf30eab",
-		"index.js": "7f30bdac385a6fc5ea0fd9db67e7d8cd90972c690fe0b09f82d31c4ffa20e069",
+		"index.js": "f4177e815b3ae5f96c6fdb1e94a5886d18bdace37b7fbe160e05a2a2ffdcb811",
 		"module.json": "e66d18c5710731b16f5ce83315c4a9dd0b1cfdce9fb1ea3a659a5405777e5416"
 	},
 	"defs": {
