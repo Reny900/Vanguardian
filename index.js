@@ -102,7 +102,7 @@ module.exports = function Vanguardian(dispatch) {
 			console.log('[H每日任务:] ' + (enabled ? 'enabled' : 'disabled'))
 		}
 		else if(param == "show")
-			command.message('<font color="#E69F00">[H每日任务:]你今日已经完成：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#00ffff">个</font>'+'<font color="#E69F00">每日任务</font>')
+			command.message('<font color="#E69F00">[H每日任务:]你今日已经完成：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">每日任务</font>')
 		else command.message('Commands:<br>'
 							+ ' "vg" (enable/disable Vanguardian),<br>'
 							+ ' "vg daily" (Tells you how many Vanguard Requests you completed today")'
