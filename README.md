@@ -4,13 +4,13 @@ Should work on all regions as long as the opcodes are mapped but I personally on
 Forks from:https://github.com/Yuyuko-sama/Vanguardian
 
 ##### :heavy_exclamation_mark: Installation for Caali's tera-proxy :heavy_exclamation_mark:
-1) Download Vanguardian: https://github.com/TeraProxy/Vanguardian/archive/master.zip
+1) Download Vanguardian: https://github.com/Reny900/Vanguardian/archive/master.zip
 2) Extract the contents of the zip file into "\tera-proxy\bin\node_modules\"
 3) Done! (the module will auto-update when a new version is released)
 
 ##### :heavy_exclamation_mark: Installation for PinkiePie's tera-proxy :heavy_exclamation_mark:
 1) Update your tera-data: https://github.com/meishuu/tera-data
-2) Download Vanguardian: https://github.com/TeraProxy/Vanguardian/archive/master.zip
+2) Download Vanguardian: https://github.com/Reny900/Vanguardian/archive/master.zip
 3) Download tera-game-state: https://github.com/hackerman-caali/tera-game-state/archive/master.zip
 4) Extract the contents of both zip files into "\tera-proxy\bin\node_modules\"
 5) Done!
