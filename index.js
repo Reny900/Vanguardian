@@ -48,9 +48,9 @@ module.exports = function Vanguardian(mod) {
 			if(daily < 16) {
 				daily++
 				weekly++
-				mod.command.message('<font color="#E69F00">[H每日任务:]你今日已经完成：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">每日任务</font>');
+				mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>');
 			} else {
-                mod.command.message('<font color="#E69F00">[H每日任务:]你今日已经完成全部：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">每日任务</font>');
+                mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>');
             }
 
 			if(daily == 3 || daily == 8)
@@ -97,11 +97,11 @@ module.exports = function Vanguardian(mod) {
         },
 		$none() {
 			enabled = !enabled
-			mod.command.message('<font color="#E69F00">[H每日任务:] </font>' + (enabled ? '<font color="#56B4E9">开启</font>' : '<font color="#E69F00">关闭</font>'))
-			console.log('[H每日任务:] ' + (enabled ? 'enabled' : 'disabled'))
+			mod.command.message('<font color="#E69F00">[Vanguardian:] </font>' + (enabled ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'))
+			console.log('[Vanguardian:] ' + (enabled ? 'enabled' : 'disabled'))
 		},
 		show() {
-			mod.command.message('<font color="#E69F00">[H每日任务:]你今日已经完成：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">每日任务</font>')
+			mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>')
         },
 	})
 }
