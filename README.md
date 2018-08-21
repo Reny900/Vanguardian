@@ -36,7 +36,8 @@ Whatever you send to the proxy chat in game is intercepted client-side. The chat
 
 ## Changelog
 <details>
-
+### 1.2.6.b
+* [*] Created te frok with english messages
 ### 1.2.6
 * [*] Fixed a weird case-sensitivity issue
 * [*] More code cleanup
