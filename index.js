@@ -2,14 +2,9 @@
 
 'use strict'
 
-const Command = require('command'),
-
 module.exports = function Vanguardian(dispatch) {
-	const command = Command(dispatch),
-	      
-	let battleground = null,
-		inbattleground = false,
-		questid = 0,
+
+	let questid = 0,
 		timeout = null,
 		timeoutdaily = null,
 		timeoutweekly = null,
@@ -41,15 +36,6 @@ module.exports = function Vanguardian(dispatch) {
 		weekly = event.unk6
 	})
 
-	// ############## //
-	// ### Checks ### //
-	// ############## //
-
-	dispatch.hook('S_BATTLE_FIELD_ENTRANCE_INFO', 1, event => { battleground = event.zone })
-
-	dispatch.game.on('enter_loading_screen', () => {
-		inbattleground = dispatch.game.me.zone == battleground
-	})
 
 	// ################# //
 	// ### Functions ### //
@@ -58,7 +44,7 @@ module.exports = function Vanguardian(dispatch) {
 	function CompleteQuest() {
 		clearTimeout(timeout)
 		if(!enabled) return
-		if(dispatch.game.me.alive && !inbattleground) { // if alive and not in a battleground
+		if(dispatch.game.me.alive && !dispatch.game.me.inBattleground) { // if alive and not in a battleground
 			dispatch.toServer('C_COMPLETE_DAILY_EVENT', 1, { id: questid })
 			questid = 0
 			if(daily < 16) {
@@ -76,7 +62,7 @@ module.exports = function Vanguardian(dispatch) {
 	function CompleteDaily() {
 		clearTimeout(timeoutdaily)
 		if(!enabled) return
-		if(dispatch.game.me.alive && !inbattleground) // if alive and not in a battleground
+		if(dispatch.game.me.alive && !dispatch.game.me.inBattleground) // if alive and not in a battleground
 			dispatch.toServer('C_COMPLETE_EXTRA_EVENT', 1, { type: 1 })
 		else timeoutdaily = setTimeout(CompleteDaily, 5000) // if dead or busy, retry to complete quest after 5 seconds
 	}
@@ -84,7 +70,7 @@ module.exports = function Vanguardian(dispatch) {
 	function CompleteWeekly() {
 		clearTimeout(timeoutweekly)
 		if(!enabled) return
-		if(dispatch.game.me.alive && !inbattleground) // if alive and not in a battleground
+		if(dispatch.game.me.alive && !dispatch.game.me.inBattleground) // if alive and not in a battleground
 			dispatch.toServer('C_COMPLETE_EXTRA_EVENT', 1, { type: 0 })
 		else timeoutweekly = setTimeout(CompleteWeekly, 5000) // if dead or busy, retry to complete quest after 5 seconds
 	}
