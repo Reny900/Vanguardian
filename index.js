@@ -50,7 +50,7 @@ module.exports = function Vanguardian(mod) {
 				weekly++
 				mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>');
 			} else {
-                mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>');
+                mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9"></font>'+'<font color="#E69F00">Vanguard Request Today</font>');
             }
 
 			if(daily == 3 || daily == 8)
