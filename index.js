@@ -48,7 +48,7 @@ module.exports = function Vanguardian(mod) {
 			if(daily < 16) {
 				daily++
 				weekly++
-				mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>');
+				mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9"></font>'+'<font color="#E69F00">Vanguard Request Today</font>');
 			} else {
                 mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9"></font>'+'<font color="#E69F00">Vanguard Request Today</font>');
             }
@@ -101,7 +101,7 @@ module.exports = function Vanguardian(mod) {
 			console.log('[Vanguardian:] ' + (enabled ? 'enabled' : 'disabled'))
 		},
 		show() {
-			mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9">个</font>'+'<font color="#E69F00">Vanguard Request Today</font>')
+			mod.command.message('<font color="#E69F00">[Vanguardian:]You have completed：</font>' + `<font color="#56B4E9">${daily}</font>` + '<font color="#56B4E9"></font>'+'<font color="#E69F00">Vanguard Request Today</font>')
         },
 	})
 }
